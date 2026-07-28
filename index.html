@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- FAVICON "EE" ESCALONADO (Blanco / Verde Neón) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230f172a'/><g transform='skewX(-14)' font-family='Arial Black, sans-serif' font-weight='900' font-size='62'><text x='24' y='64' fill='%23ffffff'>E</text><text x='58' y='76' fill='%2322c55e'>E</text></g></svg>">
+  
+  <title>CheetaFlex, S.A. | Movilidad y Energía Sostenible</title>
+  
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --accent: #22c55e;
+      --accent-hover: #16a34a;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
+    
+    body { 
+      background-color: var(--bg-color); 
+      color: var(--text); 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      min-height: 100vh; 
+      padding: 20px; 
+    }
+    
+    .container { 
+      background-color: var(--card-bg); 
+      border: 1px solid var(--border); 
+      border-radius: 20px; 
+      width: 100%; 
+      max-width: 460px; 
+      padding: 40px 28px; 
+      text-align: center;
+      box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.5); 
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* TÍTULO CHEETAFLEX ESCALONADO E ITÁLICO */
+    .brand-title { 
+      font-size: clamp(2.2rem, 7vw, 2.8rem); 
+      font-weight: 900; 
+      font-style: italic;
+      display: inline-flex; 
+      align-items: center; 
+      justify-content: center; 
+      gap: 2px;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .brand-title span.brand-cheeta { 
+      color: #ffffff; 
+      transform: translateY(-1.5px);
+      display: inline-block;
+    }
+
+    .brand-title span.brand-flex { 
+      color: var(--accent); 
+      transform: translateY(1.5px);
+      display: inline-block;
+    }
+
+    .brand-title .brand-tm {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      opacity: 0.6;
+      margin-left: 2px;
+      align-self: flex-start;
+      transform: translateY(-2px);
+    }
+
+    .tagline {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      font-weight: 400;
+      line-height: 1.4;
+      max-width: 320px;
+    }
+
+    /* BOTÓN DERECHO A TEST.CHEETAFLEX.COM */
+    .cta-btn { 
+      width: 100%; 
+      padding: 16px; 
+      background-color: var(--accent); 
+      color: #000; 
+      border: none; 
+      border-radius: 12px; 
+      font-weight: 800; 
+      font-size: 1.1rem; 
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s ease; 
+      box-shadow: 0 4px 15px rgba(34, 197, 94, 0.25);
+      cursor: pointer;
+    }
+
+    .cta-btn:hover { 
+      background-color: var(--accent-hover); 
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(34, 197, 94, 0.35);
+    }
+
+    .footer-note {
+      margin-top: 32px;
+      font-size: 0.75rem;
+      color: #64748b;
+      letter-spacing: 0.3px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- MARCA CHEETAFLEX -->
+    <h1 class="brand-title">
+      <span class="brand-cheeta">CHEETA</span><span class="brand-flex">FLEX</span><sup class="brand-tm">TM</sup>
+    </h1>
+
+    <p class="tagline">Impulsando la transición hacia la movilidad sostenible y energías eficientes.</p>
+
+    <!-- BOTÓN DE REDIRECCIÓN -->
+    <a href="https://test.cheetaflex.com" class="cta-btn">
+      Haz el Test
+    </a>
+
+    <div class="footer-note">
+      CheetaFlex, S.A. &copy; 2026
+    </div>
+  </div>
+
+</body>
+</html>
