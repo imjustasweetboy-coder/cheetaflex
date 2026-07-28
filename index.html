@@ -3,308 +3,443 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- FAVICON "EE" ESCALONADO (Blanco / Verde Neón) -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230f172a'/><g transform='skewX(-14)' font-family='Arial Black, sans-serif' font-weight='900' font-size='62'><text x='24' y='64' fill='%23ffffff'>E</text><text x='58' y='76' fill='%2322c55e'>E</text></g></svg>">
-  
   <title>CheetaFlex™</title>
   
+  <!-- FAVICON -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230f172a'/><g transform='skewX(-14)' font-family='Arial Black, sans-serif' font-weight='900' font-size='62'><text x='24' y='64' fill='%23ffffff'>E</text><text x='58' y='76' fill='%2322c55e'>E</text></g></svg>">
+
   <style>
     :root {
-      --bg-color: #0f172a;
-      --card-bg: #1e293b;
-      --accent: #22c55e;
-      --accent-hover: #16a34a;
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
+      /* PALETA DE 3 COLORES CONCEPTO: MAR, SELVA Y CIELO */
+      --mar-fondo: #0f172a;       /* Azul Marino Oscuro */
+      --mar-tarjeta: #1e293b;     /* Azul Marino Profundo */
+      --selva: #22c55e;           /* Verde Selva */
+      --cielo: #ffffff;           /* Blanco Cielo */
+      --cielo-tenue: #94a3b8;     /* Blanco / Gris Nube para textos secundarios */
       --border: #334155;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
-    
-    body { 
-      background-color: var(--bg-color); 
-      color: var(--text); 
-      display: flex; 
-      flex-direction: column;
-      align-items: center; 
-      min-height: 100vh; 
-      padding: 24px 16px; 
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--mar-fondo);
+      color: var(--cielo);
+      min-height: 100vh;
     }
-    
-    .main-wrapper {
+
+    /* BARRA FLOTANTE DE NAVEGACIÓN (Se revela solo al hacer scroll) */
+    .sticky-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
-      max-width: 680px;
+      z-index: 100;
+      padding: 16px 32px;
       display: flex;
-      flex-direction: column;
-      gap: 24px;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(-100%);
+      transition: opacity 0.35s ease, transform 0.35s ease;
     }
 
-    /* HEADER & BRAND BANNER */
-    .header {
-      text-align: center;
-      padding: 10px 0;
+    .sticky-nav.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    .brand-title { 
-      font-size: clamp(2.4rem, 8vw, 3.2rem); 
-      font-weight: 900; 
+    /* LOGO EN NAVBAR FLOTANTE */
+    .nav-brand {
+      font-size: 1.35rem;
+      font-weight: 900;
       font-style: italic;
-      display: inline-flex; 
-      align-items: center; 
-      justify-content: center; 
-      gap: 2px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
       line-height: 1;
-      margin-bottom: 12px;
+      gap: 1px;
     }
 
-    .brand-title span.brand-cheeta { color: #ffffff; transform: translateY(-1.5px); display: inline-block; }
-    .brand-title span.brand-flex { color: var(--accent); transform: translateY(1.5px); display: inline-block; }
-    .brand-title .brand-tm {
-      font-size: 0.65rem;
+    .nav-brand .brand-cheeta { color: var(--cielo); transform: translateY(-1.5px); display: inline-block; }
+    .nav-brand .brand-flex { color: var(--selva); transform: translateY(1.5px); display: inline-block; }
+    .nav-brand .brand-tm {
+      font-size: 0.5rem;
       font-weight: 700;
-      color: var(--text-muted);
+      font-style: normal;
+      color: var(--cielo-tenue);
       opacity: 0.6;
       margin-left: 2px;
       align-self: flex-start;
       transform: translateY(-2px);
     }
 
-    .tagline {
-      font-size: 1rem;
-      color: var(--text-muted);
-      font-weight: 400;
-      line-height: 1.5;
-      max-width: 500px;
-      margin: 0 auto;
+    /* ENLACES DE NAVEGACIÓN */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
     }
 
-    /* CARD CONTENEDOR PRINCIPAL */
-    .card { 
-      background-color: var(--card-bg); 
-      border: 1px solid var(--border); 
-      border-radius: 20px; 
-      padding: 28px 20px; 
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4); 
+    .nav-link {
+      color: var(--cielo-tenue);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: color 0.2s ease;
     }
 
-    .section-title {
-      font-size: 0.85rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-muted);
+    .nav-link:hover { color: var(--selva); }
+
+    /* SECCIÓN HERO A PANTALLA COMPLETA (100vh) */
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      margin-bottom: 20px;
+      padding: 20px;
+      position: relative;
     }
 
-    /* SUITE DE HERRAMIENTAS (TEST & YIELD) */
-    .tools-grid {
+    /* LOGO CENTRADO Y GIGANTE */
+    .hero-brand-wrapper {
+      will-change: transform, opacity;
+      transform-origin: center center;
+      margin-bottom: 24px;
+    }
+
+    .hero-brand {
+      font-size: clamp(3.8rem, 13vw, 7.5rem);
+      font-weight: 900;
+      font-style: italic;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      line-height: 1;
+      gap: 2px;
+      letter-spacing: -2px;
+    }
+
+    .hero-brand .brand-cheeta { color: var(--cielo); transform: translateY(-6px); display: inline-block; }
+    .hero-brand .brand-flex { color: var(--selva); transform: translateY(6px); display: inline-block; }
+    .hero-brand .brand-tm {
+      font-size: 1.4rem;
+      font-weight: 700;
+      font-style: normal;
+      color: var(--cielo-tenue);
+      opacity: 0.6;
+      margin-left: 4px;
+      align-self: flex-start;
+      transform: translateY(-10px);
+    }
+
+    .hero-title {
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      line-height: 1.2;
+      color: var(--cielo);
+      max-width: 700px;
+    }
+
+    .hero-title i { color: var(--selva); font-style: italic; }
+
+    /* BOTÓN EXPLORAR CLIQUEABLE Y CON ANIMACIÓN EN HOVER/CLIC */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--cielo-tenue);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      text-decoration: none;
+      cursor: pointer;
+      opacity: 0.8;
+      transition: all 0.25s ease;
+      background: none;
+      border: none;
+      outline: none;
+    }
+
+    .scroll-indicator svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+      transition: transform 0.25s ease;
+    }
+
+    /* HOVER: Sube suavemente e ilumina en verde */
+    .scroll-indicator:hover {
+      color: var(--selva);
+      opacity: 1;
+      transform: translateY(-4px);
+    }
+
+    .scroll-indicator:hover svg {
+      transform: translateY(4px);
+    }
+
+    /* CLIC (ACTIVE): Efecto de presión */
+    .scroll-indicator:active {
+      transform: translateY(1px);
+    }
+
+    /* CONTENEDOR PRINCIPAL DE CONTENIDO */
+    .hub-container {
+      width: 100%;
+      max-width: 840px;
+      margin: 0 auto;
+      padding: 40px 20px 80px 20px;
+    }
+
+    /* GRID DE TARJETAS DE HERRAMIENTAS */
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 60px;
+      scroll-margin-top: 80px; /* Offset para el scroll al hacer clic */
     }
 
     .tool-card {
-      background: #0f172a;
+      background-color: var(--mar-tarjeta);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 24px 20px;
+      padding: 32px 26px;
+      color: inherit;
+      text-decoration: none;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: border-color 0.2s ease, transform 0.2s ease;
+      position: relative;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
     }
 
-    .tool-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
+    .card-top { margin-bottom: 24px; }
+    .card-icon { font-size: 2.2rem; margin-bottom: 18px; display: inline-block; }
 
-    .tool-header {
-      margin-bottom: 16px;
-    }
-
-    .tool-badge {
-      display: inline-block;
-      font-size: 0.68rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      padding: 4px 8px;
-      border-radius: 6px;
-      margin-bottom: 10px;
-      letter-spacing: 0.5px;
-    }
-
-    .badge-test { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
-    .badge-yield { background: rgba(34, 197, 94, 0.15); color: var(--accent); border: 1px solid rgba(34, 197, 94, 0.3); }
-
-    .tool-name {
+    .card-title {
       font-size: 1.4rem;
       font-weight: 900;
       font-style: italic;
-      color: #fff;
-      margin-bottom: 6px;
+      margin-bottom: 10px;
+      display: inline-flex;
+      align-items: center;
+      line-height: 1;
+      gap: 1px;
+      transition: color 0.2s ease;
     }
 
-    .tool-desc {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      line-height: 1.45;
+    .card-title .title-cheeta { color: var(--cielo); transform: translateY(-1.5px); display: inline-block; transition: color 0.2s ease; }
+    .card-title .title-sub { color: var(--selva); transform: translateY(1.5px); display: inline-block; transition: color 0.2s ease; }
+    .card-title .title-tm {
+      font-size: 0.5rem;
+      font-weight: 700;
+      font-style: normal;
+      color: var(--cielo-tenue);
+      opacity: 0.6;
+      margin-left: 1px;
+      margin-right: 6px;
+      align-self: flex-start;
+      transform: translateY(-2px);
+      transition: color 0.2s ease;
     }
 
-    /* BOTONES CTA HOLLOW CON HOVER RELLENO */
-    .btn-action {
-      width: 100%;
-      padding: 15px;
-      border-radius: 10px;
-      font-weight: 800;
-      font-size: 0.95rem;
-      text-decoration: none;
-      text-align: center;
-      display: inline-block;
-      cursor: pointer;
-      margin-top: 20px;
-      background-color: transparent;
-      color: var(--text);
-      border: 1px solid var(--accent);
-      transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    .card-title .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      font-style: normal;
+      background: rgba(34, 197, 94, 0.15);
+      color: var(--selva);
+      padding: 3px 8px;
+      border-radius: 20px;
+      transition: all 0.2s ease;
     }
 
-    .btn-action:hover,
-    .btn-action:active {
-      background-color: var(--accent);
-      color: #0f172a;
-      box-shadow: 0 4px 14px rgba(34, 197, 94, 0.3);
-      transform: translateY(-1px);
+    .card-desc {
+      color: var(--cielo-tenue);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      transition: color 0.2s ease;
     }
 
-    /* BANNER DE VALOR EN EL PIE DE LA CARD */
-    .value-footer {
-      margin-top: 24px;
-      padding-top: 20px;
-      border-top: 1px dashed var(--border);
+    .card-arrow {
+      align-self: flex-end;
       display: flex;
-      justify-content: space-around;
-      text-align: center;
+      align-items: center;
+      color: var(--cielo-tenue);
+      transition: all 0.2s ease;
     }
 
-    .value-item {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
+    .card-arrow svg { width: 22px; height: 22px; fill: currentColor; }
+
+    /* HOVER EFFECT */
+    .tool-card:hover, .tool-card:active {
+      background-color: var(--selva);
+      border-color: var(--selva);
+      transform: translateY(-4px);
+      box-shadow: 0 0 25px rgba(34, 197, 94, 0.4);
     }
 
-    .value-number {
-      font-size: 0.95rem;
-      font-weight: 900;
-      letter-spacing: 0.5px;
-      color: #fff;
-    }
+    .tool-card:hover .title-cheeta,
+    .tool-card:hover .title-sub,
+    .tool-card:hover .title-tm,
+    .tool-card:hover .card-desc,
+    .tool-card:hover .card-arrow { color: var(--mar-fondo); }
+    .tool-card:hover .tag { background: var(--mar-fondo); color: var(--selva); }
+    .tool-card:hover .card-arrow svg { transform: translateX(4px); }
 
-    .value-label {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-    }
+    /* SECCIONES INFORMATIVAS */
+    .about-container { display: flex; flex-direction: column; gap: 20px; margin-top: 20px; }
+    .info-card { background-color: var(--mar-tarjeta); border: 1px solid var(--border); border-radius: 16px; padding: 32px 28px; }
+    .info-card h2 { font-size: 1.35rem; font-weight: 800; margin-bottom: 12px; color: var(--cielo); display: flex; align-items: center; gap: 8px; }
+    .info-card h2 span.icon { font-size: 1.1rem; }
+    .info-card p { color: var(--cielo-tenue); font-size: 0.95rem; line-height: 1.6; }
+    .mv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
 
     /* FOOTER */
-    .footer {
-      text-align: center;
-      padding: 12px 0;
-      font-size: 0.78rem;
-      color: #64748b;
-    }
+    .hub-footer { text-align: center; padding: 30px 20px; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--cielo-tenue); }
 
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      margin-bottom: 10px;
+    @media (max-width: 600px) {
+      .sticky-nav { padding: 14px 16px; }
+      .nav-links { gap: 16px; }
+      .nav-link { font-size: 0.82rem; }
     }
-
-    .footer-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.2s;
-    }
-
-    .footer-links a:hover { color: #fff; }
   </style>
 </head>
 <body>
 
-  <div class="main-wrapper">
+  <!-- BARRA DE NAVEGACIÓN FLOTANTE (Oculta en hero, activa al scroll) -->
+  <nav class="sticky-nav" id="stickyNav">
+    <a href="#inicio" class="nav-brand">
+      <span class="brand-cheeta">CHEETA</span><span class="brand-flex">FLEX</span><sup class="brand-tm">TM</sup>
+    </a>
     
-    <!-- HEADER -->
-    <header class="header">
-      <h1 class="brand-title">
+    <ul class="nav-links">
+      <li><a href="#inicio" class="nav-link">Inicio</a></li>
+      <li><a href="#herramientas" class="nav-link">Herramientas</a></li>
+      <li><a href="#nosotros" class="nav-link">¿Quiénes somos?</a></li>
+    </ul>
+  </nav>
+
+  <!-- PANTALLA HERO COMPLETA (100vh) SIN BARRA -->
+  <section class="hero-section" id="inicio">
+    <div class="hero-brand-wrapper" id="heroBrandWrapper">
+      <div class="hero-brand">
         <span class="brand-cheeta">CHEETA</span><span class="brand-flex">FLEX</span><sup class="brand-tm">TM</sup>
-      </h1>
-      <p class="tagline">Movilidad Eficiente y Sostenible.</p>
-    </header>
+      </div>
+    </div>
 
-    <!-- CARD PRINCIPAL -->
-    <main class="card">
-      <div class="section-title">Herramientas de la Plataforma</div>
+    <h1 class="hero-title">
+      Soluciones Energéticas <i>Innovadoras</i>
+    </h1>
+
+    <!-- BOTÓN EXPLORAR CLIQUEABLE -->
+    <a href="#herramientas" class="scroll-indicator" aria-label="Explorar herramientas">
+      <span>Explorar</span>
+      <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
+    </a>
+  </section>
+
+  <!-- CONTENEDOR DE HERRAMIENTAS E INFORMACIÓN -->
+  <div class="hub-container">
+    
+    <main class="grid" id="herramientas">
       
-      <div class="tools-grid">
-        
-        <!-- CARD CHEETATEST -->
-        <div class="tool-card">
-          <div class="tool-header">
-            <span class="tool-badge badge-test">Diagnóstico VIN & Marca</span>
-            <div class="tool-name">CheetaTest™</div>
-            <p class="tool-desc">Verifica al instante si tu carro o moto es compatible con mezclas E10/FlexFuel sin comprometer la mecánica.</p>
-          </div>
-          <a href="https://test.cheetaflex.com" class="btn-action">
-            🔍 Probar Compatibilidad
-          </a>
+      <!-- CHEETATEST -->
+      <a href="https://test.cheetaflex.com" class="tool-card">
+        <div class="card-top">
+          <div class="card-icon">🧪</div>
+          <h2 class="card-title">
+            <span class="title-cheeta">CHEETA</span><span class="title-sub">TEST</span><sup class="title-tm">TM</sup>
+            <span class="tag">VERIFICADOR</span>
+          </h2>
+          <p class="card-desc">Verifica si tu carro o motocicleta es compatible con mezclas E10 / FlexFuel por modelo o marca.</p>
         </div>
+        <div class="card-arrow">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </a>
 
-        <!-- CARD CHEETAYIELD -->
-        <div class="tool-card">
-          <div class="tool-header">
-            <span class="tool-badge badge-yield">Calculadora & Mezclas</span>
-            <div class="tool-name">CheetaYield™</div>
-            <p class="tool-desc">Simula el ahorro económico por galón, calcula mezclas exactas de combustible y proyecta tu reducción de huella de carbono.</p>
-          </div>
-          <a href="https://yield.cheetaflex.com" class="btn-action">
-            ⚡ Calcular Rendimiento
-          </a>
+      <!-- CHEETAYIELD -->
+      <a href="https://yield.cheetaflex.com" class="tool-card">
+        <div class="card-top">
+          <div class="card-icon">💰</div>
+          <h2 class="card-title">
+            <span class="title-cheeta">CHEETA</span><span class="title-sub">YIELD</span><sup class="title-tm">TM</sup>
+            <span class="tag">CALCULADORA</span>
+          </h2>
+          <p class="card-desc">Calcula el rendimiento estimado, ahorro económico y costo por kilómetro según la mezcla de combustible.</p>
         </div>
-
-      </div>
-
-      <!-- BANNER DE VALOR / PUNTOS CLAVE -->
-      <div class="value-footer">
-        <div class="value-item">
-          <span class="value-number">GRATIS</span>
-          <span class="value-label">Sin registros</span>
+        <div class="card-arrow">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
-        <div class="value-item">
-          <span class="value-number">FÁCIL</span>
-          <span class="value-label">Resultados al instante</span>
-        </div>
-        <div class="value-item">
-          <span class="value-number">SEGURO</span>
-          <span class="value-label">100% Privado</span>
-        </div>
-      </div>
+      </a>
 
     </main>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-      <div class="footer-links">
-        <a href="https://test.cheetaflex.com">CheetaTest™</a>
-        <a href="https://yield.cheetaflex.com">CheetaYield™</a>
-        <a href="https://forms.gle/SChB6HrnJxaYc9dUA" target="_blank">Reportar Problema</a>
+    <!-- SOBRE LA EMPRESA -->
+    <div class="about-container" id="nosotros">
+      <section class="info-card">
+        <h2><span class="icon">📍</span> ¿Quiénes somos?</h2>
+        <p>Somos una empresa tecnológica emergente en pleno crecimiento, operando desde Guatemala. Desarrollamos herramientas digitales para facilitar la transición hacia el uso eficiente de combustibles alternativos, conectando la compatibilidad técnica con el rendimiento real para conductores e industrias.</p>
+      </section>
+
+      <div class="mv-grid">
+        <section class="info-card">
+          <h2><span class="icon">🎯</span> Nuestra Misión</h2>
+          <p>Crear soluciones tecnológicas revolucionarias enfocadas en resolver desafíos energéticos. Buscamos innovar constantemente en la optimización de recursos, anteponiendo la conservación de los ecosistemas como nuestro principio rector.</p>
+        </section>
+
+        <section class="info-card">
+          <h2><span class="icon">🌱</span> Nuestra Visión</h2>
+          <p>Posicionarnos como el referente en soluciones ecológicas de Centroamérica y la región, impulsando la independencia energética mientras protegemos el entorno: manteniendo las <strong style="color: var(--selva);">selvas verdes</strong>, los <strong style="color: #60a5fa;">mares azules</strong> y los <strong style="color: var(--cielo);">cielos despejados</strong> que inspiran nuestra identidad.</p>
+        </section>
       </div>
-      <div>CheetaFlex™ &copy; 2026.</div>
-    </footer>
+    </div>
 
   </div>
+
+  <footer class="hub-footer">
+    <p>© 2026 CheetaFlex™. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- SCRIPT DE INTERACCIÓN DE SCROLL -->
+  <script>
+    const heroBrand = document.getElementById('heroBrandWrapper');
+    const stickyNav = document.getElementById('stickyNav');
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      const triggerHeight = window.innerHeight * 0.35; // Punto de activación al 35% del scroll
+
+      if (scrollY > triggerHeight) {
+        stickyNav.classList.add('visible');
+      } else {
+        stickyNav.classList.remove('visible');
+      }
+
+      // Animación de escala sutil del logo central
+      if (scrollY < window.innerHeight) {
+        const progress = scrollY / window.innerHeight;
+        heroBrand.style.transform = `scale(${1 - progress * 0.3}) translateY(-${progress * 40}px)`;
+        heroBrand.style.opacity = `${1 - progress * 1.5}`;
+      }
+    });
+  </script>
 
 </body>
 </html>
