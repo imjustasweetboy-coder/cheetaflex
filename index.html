@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>CheetaFlex™</title>
   
   <!-- FAVICON -->
@@ -10,16 +10,15 @@
 
   <style>
     :root {
-      /* PALETA DE 3 COLORES CONCEPTO: MAR, SELVA Y CIELO */
-      --mar-fondo: #0f172a;       /* Azul Marino Oscuro */
-      --mar-tarjeta: #1e293b;     /* Azul Marino Profundo */
-      --selva: #22c55e;           /* Verde Selva */
-      --cielo: #ffffff;           /* Blanco Cielo */
-      --cielo-tenue: #94a3b8;     /* Blanco / Gris Nube para textos secundarios */
+      --mar-fondo: #0f172a;       
+      --mar-tarjeta: #1e293b;     
+      --selva: #22c55e;           
+      --cielo: #ffffff;           
+      --cielo-tenue: #94a3b8;     
       --border: #334155;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
 
     html { scroll-behavior: smooth; }
 
@@ -27,21 +26,23 @@
       background-color: var(--mar-fondo);
       color: var(--cielo);
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    /* BARRA FLOTANTE DE NAVEGACIÓN (Se revela solo al hacer scroll) */
+    /* BARRA FLOTANTE DE NAVEGACIÓN */
     .sticky-nav {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       z-index: 100;
-      padding: 16px 32px;
+      padding: 14px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: rgba(15, 23, 42, 0.85);
+      background-color: rgba(15, 23, 42, 0.92);
       backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       opacity: 0;
       transform: translateY(-100%);
@@ -53,9 +54,8 @@
       transform: translateY(0);
     }
 
-    /* LOGO EN NAVBAR FLOTANTE */
     .nav-brand {
-      font-size: 1.35rem;
+      font-size: 1.2rem;
       font-weight: 900;
       font-style: italic;
       text-decoration: none;
@@ -65,24 +65,22 @@
       gap: 1px;
     }
 
-    .nav-brand .brand-cheeta { color: var(--cielo); transform: translateY(-1.5px); display: inline-block; }
-    .nav-brand .brand-flex { color: var(--selva); transform: translateY(1.5px); display: inline-block; }
+    .nav-brand .brand-cheeta { color: var(--cielo); transform: translateY(-1px); }
+    .nav-brand .brand-flex { color: var(--selva); transform: translateY(1px); }
     .nav-brand .brand-tm {
-      font-size: 0.5rem;
+      font-size: 0.45rem;
       font-weight: 700;
       font-style: normal;
       color: var(--cielo-tenue);
       opacity: 0.6;
       margin-left: 2px;
       align-self: flex-start;
-      transform: translateY(-2px);
     }
 
-    /* ENLACES DE NAVEGACIÓN */
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 28px;
+      gap: 24px;
       list-style: none;
     }
 
@@ -96,71 +94,86 @@
 
     .nav-link:hover { color: var(--selva); }
 
-    /* SECCIÓN HERO A PANTALLA COMPLETA (100vh) */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--cielo);
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .mobile-menu-btn svg { width: 26px; height: 26px; fill: currentColor; }
+
+    /* SECCIÓN HERO A PANTALLA COMPLETA */
     .hero-section {
       min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 20px;
+      padding: 20px 16px;
       position: relative;
+      width: 100%;
     }
 
-    /* LOGO CENTRADO Y GIGANTE */
     .hero-brand-wrapper {
       will-change: transform, opacity;
       transform-origin: center center;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
+      max-width: 100%;
     }
 
     .hero-brand {
-      font-size: clamp(3.8rem, 13vw, 7.5rem);
+      font-size: clamp(2.4rem, 10.5vw, 6.8rem);
       font-weight: 900;
       font-style: italic;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       line-height: 1;
       gap: 2px;
-      letter-spacing: -2px;
+      letter-spacing: -1px;
+      white-space: nowrap;
     }
 
-    .hero-brand .brand-cheeta { color: var(--cielo); transform: translateY(-6px); display: inline-block; }
-    .hero-brand .brand-flex { color: var(--selva); transform: translateY(6px); display: inline-block; }
+    .hero-brand .brand-cheeta { color: var(--cielo); transform: translateY(-4px); }
+    .hero-brand .brand-flex { color: var(--selva); transform: translateY(4px); }
     .hero-brand .brand-tm {
-      font-size: 1.4rem;
+      font-size: clamp(0.7rem, 2.5vw, 1.3rem);
       font-weight: 700;
       font-style: normal;
       color: var(--cielo-tenue);
       opacity: 0.6;
-      margin-left: 4px;
+      margin-left: 2px;
       align-self: flex-start;
-      transform: translateY(-10px);
+      transform: translateY(-6px);
     }
 
     .hero-title {
-      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-size: clamp(1.4rem, 4.5vw, 2.6rem);
       font-weight: 800;
-      letter-spacing: -0.8px;
-      line-height: 1.2;
+      letter-spacing: -0.5px;
+      line-height: 1.25;
       color: var(--cielo);
-      max-width: 700px;
+      max-width: 650px;
+      padding: 0 10px;
     }
 
     .hero-title i { color: var(--selva); font-style: italic; }
 
-    /* BOTÓN EXPLORAR CLIQUEABLE Y CON ANIMACIÓN EN HOVER/CLIC */
     .scroll-indicator {
       position: absolute;
-      bottom: 30px;
+      bottom: 28px;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 6px;
       color: var(--cielo-tenue);
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1.5px;
@@ -174,8 +187,8 @@
     }
 
     .scroll-indicator svg {
-      width: 22px;
-      height: 22px;
+      width: 20px;
+      height: 20px;
       fill: currentColor;
       transition: transform 0.25s ease;
     }
@@ -183,31 +196,24 @@
     .scroll-indicator:hover {
       color: var(--selva);
       opacity: 1;
-      transform: translateY(-4px);
+      transform: translateY(-3px);
     }
 
-    .scroll-indicator:hover svg {
-      transform: translateY(4px);
-    }
+    .scroll-indicator:hover svg { transform: translateY(3px); }
 
-    .scroll-indicator:active {
-      transform: translateY(1px);
-    }
-
-    /* CONTENEDOR PRINCIPAL DE CONTENIDO */
+    /* CONTENEDOR PRINCIPAL */
     .hub-container {
       width: 100%;
       max-width: 840px;
       margin: 0 auto;
-      padding: 40px 20px 80px 20px;
+      padding: 20px 16px 60px 16px;
     }
 
-    /* GRID DE TARJETAS DE HERRAMIENTAS */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      margin-bottom: 60px;
+      gap: 16px;
+      margin-bottom: 40px;
       scroll-margin-top: 80px;
     }
 
@@ -215,7 +221,7 @@
       background-color: var(--mar-tarjeta);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 32px 26px;
+      padding: 24px 20px;
       color: inherit;
       text-decoration: none;
       display: flex;
@@ -226,23 +232,49 @@
       cursor: pointer;
     }
 
-    .card-top { margin-bottom: 24px; }
-    .card-icon { font-size: 2.2rem; margin-bottom: 18px; display: inline-block; }
+    .card-top { margin-bottom: 20px; }
+
+    /* EMOJIS 3D FIJOS Y UNIVERSALES */
+    .emoji-3d-img {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 14px;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 12px rgba(0,0,0,0.35));
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .emoji-3d-img.inline-emoji {
+      width: 26px;
+      height: 26px;
+      margin-bottom: 0;
+      display: inline-block;
+      vertical-align: sub;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
+    }
+
+    .card-title-group {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
 
     .card-title {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-weight: 900;
       font-style: italic;
-      margin-bottom: 10px;
       display: inline-flex;
       align-items: center;
       line-height: 1;
       gap: 1px;
-      transition: color 0.2s ease;
     }
 
-    .card-title .title-cheeta { color: var(--cielo); transform: translateY(-1.5px); display: inline-block; transition: color 0.2s ease; }
-    .card-title .title-sub { color: var(--selva); transform: translateY(1.5px); display: inline-block; transition: color 0.2s ease; }
+    .card-title .title-cheeta { color: var(--cielo); }
+    .card-title .title-sub { color: var(--selva); }
     .card-title .title-tm {
       font-size: 0.5rem;
       font-weight: 700;
@@ -250,14 +282,11 @@
       color: var(--cielo-tenue);
       opacity: 0.6;
       margin-left: 1px;
-      margin-right: 6px;
       align-self: flex-start;
-      transform: translateY(-2px);
-      transition: color 0.2s ease;
     }
 
-    .card-title .tag {
-      font-size: 0.65rem;
+    .tag {
+      font-size: 0.62rem;
       font-weight: 700;
       font-style: normal;
       background: rgba(34, 197, 94, 0.15);
@@ -265,11 +294,12 @@
       padding: 3px 8px;
       border-radius: 20px;
       transition: all 0.2s ease;
+      white-space: nowrap;
     }
 
     .card-desc {
       color: var(--cielo-tenue);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       line-height: 1.5;
       transition: color 0.2s ease;
     }
@@ -282,13 +312,17 @@
       transition: all 0.2s ease;
     }
 
-    .card-arrow svg { width: 22px; height: 22px; fill: currentColor; }
+    .card-arrow svg { width: 20px; height: 20px; fill: currentColor; }
 
     .tool-card:hover, .tool-card:active {
       background-color: var(--selva);
       border-color: var(--selva);
-      transform: translateY(-4px);
-      box-shadow: 0 0 25px rgba(34, 197, 94, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 0 20px rgba(34, 197, 94, 0.35);
+    }
+
+    .tool-card:hover .emoji-3d-img {
+      transform: scale(1.18) rotate(-6deg);
     }
 
     .tool-card:hover .title-cheeta,
@@ -300,39 +334,65 @@
     .tool-card:hover .card-arrow svg { transform: translateX(4px); }
 
     /* SECCIONES INFORMATIVAS */
-    .about-container { display: flex; flex-direction: column; gap: 20px; margin-top: 20px; }
-    .info-card { background-color: var(--mar-tarjeta); border: 1px solid var(--border); border-radius: 16px; padding: 32px 28px; }
-    .info-card h2 { font-size: 1.35rem; font-weight: 800; margin-bottom: 12px; color: var(--cielo); display: flex; align-items: center; gap: 8px; }
-    .info-card h2 span.icon { font-size: 1.1rem; }
-    .info-card p { color: var(--cielo-tenue); font-size: 0.95rem; line-height: 1.6; }
-    .mv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .about-container { display: flex; flex-direction: column; gap: 16px; }
+    .info-card { background-color: var(--mar-tarjeta); border: 1px solid var(--border); border-radius: 16px; padding: 24px 20px; }
+    .info-card h2 { font-size: 1.25rem; font-weight: 800; margin-bottom: 10px; color: var(--cielo); display: flex; align-items: center; gap: 10px; }
+    .info-card p { color: var(--cielo-tenue); font-size: 0.9rem; line-height: 1.55; }
+    .mv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
 
-    /* FOOTER */
-    .hub-footer { text-align: center; padding: 30px 20px; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--cielo-tenue); }
+    .hub-footer { text-align: center; padding: 24px 16px; border-top: 1px solid var(--border); font-size: 0.78rem; color: var(--cielo-tenue); }
 
-    @media (max-width: 600px) {
-      .sticky-nav { padding: 14px 16px; }
-      .nav-links { gap: 16px; }
-      .nav-link { font-size: 0.82rem; }
+    @media (max-width: 640px) {
+      .sticky-nav { padding: 12px 16px; }
+      .mobile-menu-btn { display: block; }
+
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(15, 23, 42, 0.98);
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        padding: 16px 0;
+        gap: 16px;
+        display: none;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+      }
+
+      .nav-links.active { display: flex; }
+
+      .nav-link {
+        font-size: 1rem;
+        width: 100%;
+        text-align: center;
+        padding: 8px 0;
+      }
+
+      .hero-title { font-size: 1.35rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- BARRA DE NAVEGACIÓN FLOTANTE (Oculta en hero, activa al scroll) -->
+  <!-- BARRA DE NAVEGACIÓN FLOTANTE -->
   <nav class="sticky-nav" id="stickyNav">
     <a href="#inicio" class="nav-brand">
       <span class="brand-cheeta">CHEETA</span><span class="brand-flex">FLEX</span><sup class="brand-tm">TM</sup>
     </a>
+
+    <button class="mobile-menu-btn" id="menuToggle" aria-label="Abrir menú">
+      <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+    </button>
     
-    <ul class="nav-links">
+    <ul class="nav-links" id="navLinks">
       <li><a href="#inicio" class="nav-link">Inicio</a></li>
       <li><a href="#herramientas" class="nav-link">Herramientas</a></li>
       <li><a href="#nosotros" class="nav-link">¿Quiénes somos?</a></li>
     </ul>
   </nav>
 
-  <!-- PANTALLA HERO COMPLETA (100vh) SIN BARRA -->
+  <!-- PANTALLA HERO -->
   <section class="hero-section" id="inicio">
     <div class="hero-brand-wrapper" id="heroBrandWrapper">
       <div class="hero-brand">
@@ -344,7 +404,6 @@
       Soluciones Energéticas <i>Innovadoras</i>
     </h1>
 
-    <!-- BOTÓN EXPLORAR CLIQUEABLE -->
     <a href="#herramientas" class="scroll-indicator" aria-label="Explorar herramientas">
       <span>Explorar</span>
       <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
@@ -359,11 +418,20 @@
       <!-- CHEETATEST -->
       <a href="https://test.cheetaflex.com" class="tool-card">
         <div class="card-top">
-          <div class="card-icon">🧪</div>
-          <h2 class="card-title">
-            <span class="title-cheeta">CHEETA</span><span class="title-sub">TEST</span><sup class="title-tm">TM</sup>
+          <img 
+            src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Test%20tube/3D/test_tube_3d.png" 
+            alt="Probeta 3D" 
+            class="emoji-3d-img" 
+            loading="lazy"
+            onerror="this.onerror=null; this.src='https://em-content.zobj.net/source/microsoft-3d-fluent/3591/test-tube_1f9ea.png';"
+          >
+
+          <div class="card-title-group">
+            <h2 class="card-title">
+              <span class="title-cheeta">CHEETA</span><span class="title-sub">TEST</span><sup class="title-tm">TM</sup>
+            </h2>
             <span class="tag">VERIFICADOR</span>
-          </h2>
+          </div>
           <p class="card-desc">Verifica si tu carro o motocicleta es compatible con mezclas E10 / FlexFuel por modelo o marca.</p>
         </div>
         <div class="card-arrow">
@@ -374,11 +442,20 @@
       <!-- CHEETAYIELD -->
       <a href="https://yield.cheetaflex.com" class="tool-card">
         <div class="card-top">
-          <div class="card-icon">💰</div>
-          <h2 class="card-title">
-            <span class="title-cheeta">CHEETA</span><span class="title-sub">YIELD</span><sup class="title-tm">TM</sup>
+          <img 
+            src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Money%20bag/3D/money_bag_3d.png" 
+            alt="Bolsa de dinero 3D" 
+            class="emoji-3d-img" 
+            loading="lazy"
+            onerror="this.onerror=null; this.src='https://em-content.zobj.net/source/microsoft-3d-fluent/3591/money-bag_1f4b0.png';"
+          >
+
+          <div class="card-title-group">
+            <h2 class="card-title">
+              <span class="title-cheeta">CHEETA</span><span class="title-sub">YIELD</span><sup class="title-tm">TM</sup>
+            </h2>
             <span class="tag">CALCULADORA</span>
-          </h2>
+          </div>
           <p class="card-desc">Calcula el rendimiento estimado, ahorro económico y costo por kilómetro según la mezcla de combustible.</p>
         </div>
         <div class="card-arrow">
@@ -391,18 +468,45 @@
     <!-- SOBRE LA EMPRESA -->
     <div class="about-container" id="nosotros">
       <section class="info-card">
-        <h2><span class="icon">📍</span> ¿Quiénes somos?</h2>
+        <h2>
+          <img 
+            src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Round%20pushpin/3D/round_pushpin_3d.png" 
+            alt="Pin 3D" 
+            class="emoji-3d-img inline-emoji" 
+            loading="lazy"
+            onerror="this.onerror=null; this.src='https://em-content.zobj.net/source/microsoft-3d-fluent/3591/round-pushpin_1f4cd.png';"
+          >
+          ¿Quiénes somos?
+        </h2>
         <p>Somos una empresa tecnológica emergente en pleno crecimiento, operando desde Guatemala. Desarrollamos herramientas digitales para facilitar la transición hacia el uso eficiente de combustibles alternativos, conectando la compatibilidad técnica con el rendimiento real para conductores e industrias.</p>
       </section>
 
       <div class="mv-grid">
         <section class="info-card">
-          <h2><span class="icon">🎯</span> Nuestra Misión</h2>
+          <h2>
+            <img 
+              src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Bullseye/3D/bullseye_3d.png" 
+              alt="Diana 3D" 
+              class="emoji-3d-img inline-emoji" 
+              loading="lazy"
+              onerror="this.onerror=null; this.src='https://em-content.zobj.net/source/microsoft-3d-fluent/3591/direct-hit_1f3af.png';"
+            >
+            Nuestra Misión
+          </h2>
           <p>Crear soluciones tecnológicas revolucionarias enfocadas en resolver desafíos energéticos. Buscamos innovar constantemente en la optimización de recursos, anteponiendo la conservación de los ecosistemas como nuestro principio rector.</p>
         </section>
 
         <section class="info-card">
-          <h2><span class="icon">🌱</span> Nuestra Visión</h2>
+          <h2>
+            <img 
+              src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Seedling/3D/seedling_3d.png" 
+              alt="Planta 3D" 
+              class="emoji-3d-img inline-emoji" 
+              loading="lazy"
+              onerror="this.onerror=null; this.src='https://em-content.zobj.net/source/microsoft-3d-fluent/3591/seedling_1f331.png';"
+            >
+            Nuestra Visión
+          </h2>
           <p>Posicionarnos como el referente en soluciones ecológicas de Centroamérica y la región, impulsando la independencia energética mientras protegemos el entorno: manteniendo las <strong style="color: var(--selva);">selvas verdes</strong>, los <strong style="color: #60a5fa;">mares azules</strong> y los <strong style="color: var(--cielo);">cielos despejados</strong> que inspiran nuestra identidad.</p>
         </section>
       </div>
@@ -414,40 +518,45 @@
     <p>© 2026 CheetaFlex™. Todos los derechos reservados.</p>
   </footer>
 
-  <!-- SCRIPT DE INTERACCIÓN Y REINICIO DE SCROLL -->
+  <!-- SCRIPT -->
   <script>
-    // EVITA QUE EL NAVEGADOR RECUERDE LA POSICIÓN DE SCROLL AL RECARGAR Y FUERZA EL INICIO ARRIBA
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
 
-    window.addEventListener('beforeunload', () => {
-      window.scrollTo(0, 0);
+    window.addEventListener('beforeunload', () => { window.scrollTo(0, 0); });
+    window.addEventListener('load', () => { setTimeout(() => { window.scrollTo(0, 0); }, 10); });
+
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
     });
 
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-      }, 10);
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
     });
 
-    // LÓGICA DE ANIMACIÓN AL HACER SCROLL
     const heroBrand = document.getElementById('heroBrandWrapper');
     const stickyNav = document.getElementById('stickyNav');
 
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
-      const triggerHeight = window.innerHeight * 0.35;
+      const triggerHeight = window.innerHeight * 0.25;
 
       if (scrollY > triggerHeight) {
         stickyNav.classList.add('visible');
       } else {
         stickyNav.classList.remove('visible');
+        navLinks.classList.remove('active');
       }
 
       if (scrollY < window.innerHeight) {
         const progress = scrollY / window.innerHeight;
-        heroBrand.style.transform = `scale(${1 - progress * 0.3}) translateY(-${progress * 40}px)`;
+        heroBrand.style.transform = `scale(${1 - progress * 0.25}) translateY(-${progress * 30}px)`;
         heroBrand.style.opacity = `${1 - progress * 1.5}`;
       }
     });
