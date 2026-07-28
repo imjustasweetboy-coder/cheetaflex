@@ -180,7 +180,6 @@
       transition: transform 0.25s ease;
     }
 
-    /* HOVER: Sube suavemente e ilumina en verde */
     .scroll-indicator:hover {
       color: var(--selva);
       opacity: 1;
@@ -191,7 +190,6 @@
       transform: translateY(4px);
     }
 
-    /* CLIC (ACTIVE): Efecto de presión */
     .scroll-indicator:active {
       transform: translateY(1px);
     }
@@ -210,7 +208,7 @@
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
       margin-bottom: 60px;
-      scroll-margin-top: 80px; /* Offset para el scroll al hacer clic */
+      scroll-margin-top: 80px;
     }
 
     .tool-card {
@@ -286,7 +284,6 @@
 
     .card-arrow svg { width: 22px; height: 22px; fill: currentColor; }
 
-    /* HOVER EFFECT */
     .tool-card:hover, .tool-card:active {
       background-color: var(--selva);
       border-color: var(--selva);
@@ -417,14 +414,30 @@
     <p>© 2026 CheetaFlex™. Todos los derechos reservados.</p>
   </footer>
 
-  <!-- SCRIPT DE INTERACCIÓN DE SCROLL -->
+  <!-- SCRIPT DE INTERACCIÓN Y REINICIO DE SCROLL -->
   <script>
+    // EVITA QUE EL NAVEGADOR RECUERDE LA POSICIÓN DE SCROLL AL RECARGAR Y FUERZA EL INICIO ARRIBA
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
+    window.addEventListener('beforeunload', () => {
+      window.scrollTo(0, 0);
+    });
+
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 10);
+    });
+
+    // LÓGICA DE ANIMACIÓN AL HACER SCROLL
     const heroBrand = document.getElementById('heroBrandWrapper');
     const stickyNav = document.getElementById('stickyNav');
 
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
-      const triggerHeight = window.innerHeight * 0.35; // Punto de activación al 35% del scroll
+      const triggerHeight = window.innerHeight * 0.35;
 
       if (scrollY > triggerHeight) {
         stickyNav.classList.add('visible');
@@ -432,7 +445,6 @@
         stickyNav.classList.remove('visible');
       }
 
-      // Animación de escala sutil del logo central
       if (scrollY < window.innerHeight) {
         const progress = scrollY / window.innerHeight;
         heroBrand.style.transform = `scale(${1 - progress * 0.3}) translateY(-${progress * 40}px)`;
