@@ -40,7 +40,7 @@
       max-width: 460px; 
       padding: 40px 28px; 
       text-align: center;
-      box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.5); 
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4); 
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -90,27 +90,32 @@
       max-width: 320px;
     }
 
-    /* BOTÓN DERECHO A TEST.CHEETAFLEX.COM */
+    /* BOTÓN LIMPIO Y MATE (Sin resplandor neón) */
     .cta-btn { 
       width: 100%; 
       padding: 16px; 
       background-color: var(--accent); 
-      color: #000; 
+      color: #0f172a; 
       border: none; 
       border-radius: 12px; 
       font-weight: 800; 
-      font-size: 1.1rem; 
+      font-size: 1.05rem; 
       text-decoration: none;
       display: inline-block;
-      transition: all 0.2s ease; 
-      box-shadow: 0 4px 15px rgba(34, 197, 94, 0.25);
+      transition: background-color 0.15s ease, transform 0.15s ease; 
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
       cursor: pointer;
     }
 
     .cta-btn:hover { 
       background-color: var(--accent-hover); 
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(34, 197, 94, 0.35);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .cta-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
 
     .footer-note {
