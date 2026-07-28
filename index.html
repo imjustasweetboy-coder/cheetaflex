@@ -212,9 +212,21 @@
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
-      margin-bottom: 40px;
+      gap: 20px;
+      margin-bottom: 50px;
       scroll-margin-top: 80px;
+    }
+
+    @media (min-width: 641px) {
+      .grid .tool-card:nth-child(2) {
+        transform: translateY(28px);
+      }
+      .grid .tool-card:nth-child(2):hover {
+        transform: translateY(25px);
+      }
+      .grid {
+        margin-bottom: 80px;
+      }
     }
 
     .tool-card {
@@ -263,6 +275,7 @@
       margin-bottom: 10px;
     }
 
+    /* TÍTULO ESCALONADO DE LAS TARJETAS */
     .card-title {
       font-size: 1.3rem;
       font-weight: 900;
@@ -273,8 +286,8 @@
       gap: 1px;
     }
 
-    .card-title .title-cheeta { color: var(--cielo); }
-    .card-title .title-sub { color: var(--selva); }
+    .card-title .title-cheeta { color: var(--cielo); transform: translateY(-2px); }
+    .card-title .title-sub { color: var(--selva); transform: translateY(2px); }
     .card-title .title-tm {
       font-size: 0.5rem;
       font-weight: 700;
@@ -283,6 +296,7 @@
       opacity: 0.6;
       margin-left: 1px;
       align-self: flex-start;
+      transform: translateY(-4px);
     }
 
     .tag {
