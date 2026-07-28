@@ -26,29 +26,28 @@
       background-color: var(--bg-color); 
       color: var(--text); 
       display: flex; 
-      justify-content: center; 
+      flex-direction: column;
       align-items: center; 
       min-height: 100vh; 
-      padding: 20px; 
+      padding: 24px 16px; 
     }
     
-    .container { 
-      background-color: var(--card-bg); 
-      border: 1px solid var(--border); 
-      border-radius: 20px; 
-      width: 100%; 
-      max-width: 460px; 
-      padding: 40px 28px; 
-      text-align: center;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4); 
+    .main-wrapper {
+      width: 100%;
+      max-width: 680px;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      gap: 24px;
     }
 
-    /* TÍTULO CHEETAFLEX ESCALONADO E ITÁLICO */
+    /* HEADER & BRAND BANNER */
+    .header {
+      text-align: center;
+      padding: 10px 0;
+    }
+
     .brand-title { 
-      font-size: clamp(2.2rem, 7vw, 2.8rem); 
+      font-size: clamp(2.4rem, 8vw, 3.2rem); 
       font-weight: 900; 
       font-style: italic;
       display: inline-flex; 
@@ -59,18 +58,8 @@
       margin-bottom: 12px;
     }
 
-    .brand-title span.brand-cheeta { 
-      color: #ffffff; 
-      transform: translateY(-1.5px);
-      display: inline-block;
-    }
-
-    .brand-title span.brand-flex { 
-      color: var(--accent); 
-      transform: translateY(1.5px);
-      display: inline-block;
-    }
-
+    .brand-title span.brand-cheeta { color: #ffffff; transform: translateY(-1.5px); display: inline-block; }
+    .brand-title span.brand-flex { color: var(--accent); transform: translateY(1.5px); display: inline-block; }
     .brand-title .brand-tm {
       font-size: 0.65rem;
       font-weight: 700;
@@ -82,68 +71,239 @@
     }
 
     .tagline {
-      font-size: 0.9rem;
+      font-size: 1rem;
       color: var(--text-muted);
-      margin-bottom: 32px;
       font-weight: 400;
-      line-height: 1.4;
-      max-width: 320px;
+      line-height: 1.5;
+      max-width: 500px;
+      margin: 0 auto;
     }
 
-    /* BOTÓN LIMPIO Y MATE (Sin resplandor neón) */
-    .cta-btn { 
-      width: 100%; 
-      padding: 16px; 
-      background-color: var(--accent); 
-      color: #0f172a; 
-      border: none; 
-      border-radius: 12px; 
-      font-weight: 800; 
-      font-size: 1.05rem; 
-      text-decoration: none;
+    /* CARD CONTENEDOR PRINCIPAL */
+    .card { 
+      background-color: var(--card-bg); 
+      border: 1px solid var(--border); 
+      border-radius: 20px; 
+      padding: 28px 20px; 
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4); 
+    }
+
+    .section-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* SUITE DE HERRAMIENTAS (TEST & YIELD) */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .tool-card {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .tool-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .tool-header {
+      margin-bottom: 16px;
+    }
+
+    .tool-badge {
       display: inline-block;
-      transition: background-color 0.15s ease, transform 0.15s ease; 
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-test { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+    .badge-yield { background: rgba(34, 197, 94, 0.15); color: var(--accent); border: 1px solid rgba(34, 197, 94, 0.3); }
+
+    .tool-name {
+      font-size: 1.4rem;
+      font-weight: 900;
+      font-style: italic;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .tool-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    /* BOTONES CTA HOLLOW CON HOVER RELLENO */
+    .btn-action {
+      width: 100%;
+      padding: 15px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      text-decoration: none;
+      text-align: center;
+      display: inline-block;
       cursor: pointer;
+      margin-top: 20px;
+      background-color: transparent;
+      color: var(--text);
+      border: 1px solid var(--accent);
+      transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
     }
 
-    .cta-btn:hover { 
-      background-color: var(--accent-hover); 
+    .btn-action:hover,
+    .btn-action:active {
+      background-color: var(--accent);
+      color: #0f172a;
+      box-shadow: 0 4px 14px rgba(34, 197, 94, 0.3);
       transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
     }
 
-    .cta-btn:active {
-      transform: translateY(0);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    /* BANNER DE VALOR EN EL PIE DE LA CARD */
+    .value-footer {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px dashed var(--border);
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
     }
 
-    .footer-note {
-      margin-top: 32px;
-      font-size: 0.75rem;
+    .value-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .value-number {
+      font-size: 0.95rem;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      color: #fff;
+    }
+
+    .value-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      padding: 12px 0;
+      font-size: 0.78rem;
       color: #64748b;
-      letter-spacing: 0.3px;
     }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: #fff; }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <!-- MARCA CHEETAFLEX -->
-    <h1 class="brand-title">
-      <span class="brand-cheeta">CHEETA</span><span class="brand-flex">FLEX</span><sup class="brand-tm">TM</sup>
-    </h1>
+  <div class="main-wrapper">
+    
+    <!-- HEADER -->
+    <header class="header">
+      <h1 class="brand-title">
+        <span class="brand-cheeta">CHEETA</span><span class="brand-flex">FLEX</span><sup class="brand-tm">TM</sup>
+      </h1>
+      <p class="tagline">Movilidad Eficiente y Sostenible.</p>
+    </header>
 
-    <p class="tagline">Impulsando la transición hacia la movilidad sostenible y energías eficientes.</p>
+    <!-- CARD PRINCIPAL -->
+    <main class="card">
+      <div class="section-title">Herramientas de la Plataforma</div>
+      
+      <div class="tools-grid">
+        
+        <!-- CARD CHEETATEST -->
+        <div class="tool-card">
+          <div class="tool-header">
+            <span class="tool-badge badge-test">Diagnóstico VIN & Marca</span>
+            <div class="tool-name">CheetaTest™</div>
+            <p class="tool-desc">Verifica al instante si tu carro o moto es compatible con mezclas E10/FlexFuel sin comprometer la mecánica.</p>
+          </div>
+          <a href="https://test.cheetaflex.com" class="btn-action">
+            🔍 Probar Compatibilidad
+          </a>
+        </div>
 
-    <!-- BOTÓN DE REDIRECCIÓN -->
-    <a href="https://test.cheetaflex.com" class="cta-btn">
-      Haz el Test
-    </a>
+        <!-- CARD CHEETAYIELD -->
+        <div class="tool-card">
+          <div class="tool-header">
+            <span class="tool-badge badge-yield">Calculadora & Mezclas</span>
+            <div class="tool-name">CheetaYield™</div>
+            <p class="tool-desc">Simula el ahorro económico por galón, calcula mezclas exactas de combustible y proyecta tu reducción de huella de carbono.</p>
+          </div>
+          <a href="https://yield.cheetaflex.com" class="btn-action">
+            ⚡ Calcular Rendimiento
+          </a>
+        </div>
 
-    <div class="footer-note">
-      CheetaFlex™ &copy; 2026
-    </div>
+      </div>
+
+      <!-- BANNER DE VALOR / PUNTOS CLAVE -->
+      <div class="value-footer">
+        <div class="value-item">
+          <span class="value-number">GRATIS</span>
+          <span class="value-label">Sin registros</span>
+        </div>
+        <div class="value-item">
+          <span class="value-number">FÁCIL</span>
+          <span class="value-label">Resultados al instante</span>
+        </div>
+        <div class="value-item">
+          <span class="value-number">SEGURO</span>
+          <span class="value-label">100% Privado</span>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-links">
+        <a href="https://test.cheetaflex.com">CheetaTest™</a>
+        <a href="https://yield.cheetaflex.com">CheetaYield™</a>
+        <a href="https://forms.gle/SChB6HrnJxaYc9dUA" target="_blank">Reportar Problema</a>
+      </div>
+      <div>CheetaFlex™ &copy; 2026.</div>
+    </footer>
+
   </div>
 
 </body>
