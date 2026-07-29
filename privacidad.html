@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aviso de Privacidad - CheetaFlex™</title>
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230f172a'/><g transform='skewX(-14)' font-family='Arial Black, sans-serif' font-weight='900' font-size='62'><text x='24' y='64' fill='%23ffffff'>E</text><text x='58' y='76' fill='%2322c55e'>E</text></g></svg>">
+
+  <style>
+    :root {
+      --mar-fondo: #0f172a;       
+      --mar-tarjeta: #1e293b;     
+      --selva: #22c55e;           
+      --cielo: #ffffff;           
+      --cielo-tenue: #94a3b8;     
+      --border: #334155;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+
+    body {
+      background-color: var(--mar-fondo);
+      color: var(--cielo);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .top-nav {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(15, 23, 42, 0.9);
+    }
+
+    .nav-brand {
+      font-size: 1.2rem;
+      font-weight: 900;
+      font-style: italic;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 1px;
+      transition: opacity 0.2s ease;
+    }
+
+    .nav-brand:hover { opacity: 0.85; }
+
+    .brand-cheeta { color: var(--cielo); }
+    .brand-flex { color: var(--selva); }
+    .brand-tm { font-size: 0.45rem; color: var(--cielo-tenue); margin-left: 2px; }
+
+    .home-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--cielo-tenue);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .home-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+      transition: fill 0.2s ease;
+    }
+
+    .home-btn:hover {
+      background-color: var(--selva);
+      border-color: var(--selva);
+      color: var(--mar-fondo);
+    }
+
+    .home-btn:hover svg {
+      fill: var(--mar-fondo);
+    }
+
+    .content-container {
+      max-width: 720px;
+      margin: 40px auto;
+      padding: 0 20px;
+      flex: 1;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 900;
+      margin-bottom: 24px;
+      color: var(--cielo);
+    }
+
+    .card {
+      background-color: var(--mar-tarjeta);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    h2 { font-size: 1.15rem; font-weight: 700; color: var(--selva); margin-top: 10px; }
+    p { color: var(--cielo-tenue); font-size: 0.93rem; line-height: 1.6; }
+
+    .hub-footer {
+      text-align: center;
+      padding: 24px;
+      border-top: 1px solid var(--border);
+      background-color: rgba(15, 23, 42, 0.5);
+      font-size: 0.8rem;
+      color: var(--cielo-tenue);
+    }
+
+    @media (max-width: 480px) {
+      .top-nav { padding: 12px 16px; }
+      .nav-brand { font-size: 1.05rem; }
+      .home-btn span { display: none; } /* Oculta texto en móviles muy pequeños para evitar solapamientos, dejando solo el icono */
+      .home-btn { padding: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="top-nav">
+    <a href="index.html" class="nav-brand">
+      <span class="brand-cheeta">CHEETA</span><span class="brand-flex">FLEX</span><sup class="brand-tm">TM</sup>
+    </a>
+    <a href="index.html" class="home-btn" aria-label="Volver al inicio">
+      <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      <span>Inicio</span>
+    </a>
+  </header>
+
+  <main class="content-container">
+    <div class="card">
+      <h1>Aviso de Privacidad</h1>
+      <p>En <strong>CheetaFlex™</strong> valoramos tu privacidad. Este documento describe de forma sencilla cómo manejamos la información cuando utilizas nuestras herramientas web.</p>
+      
+      <h2>1. Información que recopilamos</h2>
+      <p>Nuestras herramientas de consulta (como verificadores de compatibilidad o calculadoras de rendimiento) operan principalmente procesando datos técnicos introducidos directamente por ti en el navegador. No almacenamos datos personales sensibles innecesarios.</p>
+      
+      <h2>2. Uso de los datos</h2>
+      <p>Los datos ingresados se emplean exclusivamente para brindarte el resultado técnico solicitado en tiempo real. No compartimos ni comercializamos información con terceros.</p>
+      
+      <h2>3. Contacto</h2>
+      <p>Si tienes dudas sobre este aviso de privacidad, puedes ponerte en contacto a través de nuestros canales oficiales en la plataforma.</p>
+    </div>
+  </main>
+
+  <footer class="hub-footer">
+    <p>© 2026 CheetaFlex™. Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>
