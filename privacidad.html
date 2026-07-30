@@ -53,23 +53,22 @@
     .brand-flex { color: var(--selva); }
     .brand-tm { font-size: 0.45rem; color: var(--cielo-tenue); margin-left: 2px; }
 
+    /* Botón ajustado para ser solo el ícono de la casita */
     .home-btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      justify-content: center;
       color: var(--cielo-tenue);
       text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 600;
-      padding: 6px 12px;
+      padding: 8px;
       border-radius: 8px;
       border: 1px solid transparent;
       transition: all 0.2s ease;
     }
 
     .home-btn svg {
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       fill: currentColor;
       transition: fill 0.2s ease;
     }
@@ -123,8 +122,6 @@
     @media (max-width: 480px) {
       .top-nav { padding: 12px 16px; }
       .nav-brand { font-size: 1.05rem; }
-      .home-btn span { display: none; }
-      .home-btn { padding: 8px; }
     }
   </style>
 </head>
@@ -136,7 +133,6 @@
     </a>
     <a href="/" class="home-btn" aria-label="Volver al inicio">
       <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-      <span>Inicio</span>
     </a>
   </header>
 
@@ -146,7 +142,7 @@
       <p>En <strong>CheetaFlex™</strong> respetamos tu privacidad y nos comprometemos a operar bajo principios de total transparencia. Este documento describe la forma en que manejamos la información técnica y de navegación cuando interactúas con nuestras herramientas web.</p>
       
       <h2>1. Información ingresada por el usuario</h2>
-      <p>Nuestras herramientas interactiva de consulta (tales como verificadores de compatibilidad por VIN o calculadoras de rendimiento y emisiones) procesan los datos ingresados de forma local en tu dispositivo para entregarte un resultado técnico inmediato. No almacenamos registros personales vinculados a ti ni guardamos información confidencial del vehículo en bases de datos externas.</p>
+      <p>Nuestras herramientas interactivas de consulta (tales como verificadores de compatibilidad por VIN o calculadoras de rendimiento y emisiones) procesan los datos ingresados de forma local en tu dispositivo para entregarte un resultado técnico inmediato. No almacenamos registros personales vinculados a ti ni guardamos información confidencial del vehículo en bases de datos externas.</p>
       
       <h2>2. Uso de la información técnica</h2>
       <p>Los parámetros que introduces se utilizan exclusivamente en tiempo real para generar los cálculos o consultas solicitadas. No vendemos, transferimos ni comercializamos información de los usuarios con terceros bajo ningún concepto.</p>
@@ -158,7 +154,7 @@
       <p>Nuestra plataforma no emplea cookies de seguimiento ni píxeles publicitarios de terceros. No realizamos perfilamiento de usuarios ni recopilamos datos personales identificables (PII), por lo que no requerimos rastrear tu navegación en otros sitios web.</p>
 
       <h2>5. Contacto</h2>
-      <p>Si tienes dudas sobre este aviso de privacidad o sobre el funcionamiento de nuestra infraestructura, puedes contactarnos a través de nuestro portal principal o escribir al correo <b>contacto@cheetaflex.com</b>.</p>
+      <p>Si tienes dudas sobre este aviso de privacidad o sobre el funcionamiento de nuestra infraestructura, puedes contactarnos a través de nuestro portal principal.</p>
     </div>
   </main>
 
